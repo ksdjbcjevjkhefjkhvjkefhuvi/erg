@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome to Barangay Bagumbayan's Digital Hub!</title>
+<style>
+/* CSS styles for your homepage */
+body {
+  font-family: "Century Gothic", sans-serif;
+  background: linear-gradient(135deg, #ff0000, #0099ff); /* Red to Blue gradient background */
+  color: black; /* Black font color */
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white container background */
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+  color: black; /* Black font color */
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 20px; /* Increased margin */
+}
+
+.subtitle {
+  font-size: 18px;
+  margin-bottom: 30px; /* Increased margin */
+}
+
+.button {
+  background-color: #ffcc00; /* Yellow button background */
+  color: black; /* Black font color */
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  background-color: #ffbb00; /* Darker yellow on hover */
+}
+
+.features, .quick-links, .testimonials, .contact-us {
+  margin-bottom: 50px; /* Increased space between sections */
+}
+
+.feature-item {
+  margin-bottom: 10px;
+  line-height: 1.6; /* Increased line height */
+}
+
+.footer {
+  text-align: center;
+  margin-top: 30px;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Barangay Image">
+    <div class="title">Welcome to Barangay Bagumbayan's Digital Hub!</div>
+    <div class="subtitle">We're excited to introduce our digital platform, "Digital Barangay Unleashed," aimed at bringing convenience and efficiency to our community's public services.</div>
+    <div class="login-register">
+      <a href="{{ url_for('login') }}" class="button">Login</a>
+      <a href="{{ url_for('register') }}" class="button">Register</a>
+    </div>
+  </div>
+
+  <div class="features">
+    <div class="title">Key Features:</div>
+    <div class="feature-item">Access e-documents and forms online.</div>
+    <div class="feature-item">Submit service requests from the comfort of your home.</div>
+    <div class="feature-item">Stay updated with barangay programs and initiatives.</div>
+    <div class="feature-item">Get the latest news and announcements.</div>
+    <div class="feature-item">Connect with your neighbors through community forums.</div>
+  </div>
+
+  <div class="quick-links">
+    <div class="title">Quick Links:</div>
+    <div class="feature-item">Apply for barangay clearances</div>
+    <div class="feature-item">Report incidents or issues</div>
+    <div class="feature-item">View barangay ordinances and regulations</div>
+    <div class="feature-item">Explore upcoming events and activities</div>
+  </div>
+
+  <div class="testimonials">
+    <div class="title">What Our Community Says:</div>
+    <div class="testimonial">"[Insert testimonial here]"</div>
+  </div>
+
+  <div class="contact-us">
+    <div class="title">Contact Us:</div>
+    <div class="contact-info">For assistance or inquiries, reach out to our barangay officials:</div>
+    <div class="contact-info">[Insert contact information here]</div>
+  </div>
+
+  <img src="{{ url_for('static', filename='terr.jpg') }}" width="auto" height="100" />
+
+</div>
+
+<div class="footer">
+  <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
+</div>
+
+</body>
+</html>

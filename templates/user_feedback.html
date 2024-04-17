@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Satisfaction Question</title>
+    <style>
+        body {
+            font-family: "Century Gothic", sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ff0000, #0099ff); /* Red to Blue gradient background */
+            color: black;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .subtitle {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .button-container {
+            text-align: center;
+        }
+        .button {
+            background-color: #ffcc00;
+            color: black;
+            padding: 12px 40px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            display: inline-block; /* Change to inline-block to center */
+        }
+        .button:hover {
+            background-color: #ffbb00;
+        }
+        .question {
+            border: 2px solid beige;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 600px;
+            text-align: center; /* Center align the questions */
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        .rating {
+            text-align: center;
+        }
+        .rating input {
+            display: none;
+        }
+        .rating label {
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px;
+            display: inline-block;
+            margin-right: 10px;
+            position: relative;
+            transition: transform 0.2s ease;
+        }
+        .rating label:hover {
+            transform: scale(1.2);
+        }
+        .satisfied {
+            color: #00a300;
+        }
+        .not-satisfied {
+            color: #ffcc00;
+        }
+        .disappointed {
+            color: #ff3300;
+        }
+        .rating input:checked + label::after {
+            content: attr(data-text);
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-size: 16px;
+        }
+        .rating input:checked + label::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: black;
+            bottom: 0;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h2>How satisfied are you?</h2>
+        <div class="title">Barangay Bagumbayan's Digital Hub</div>
+        <div class="subtitle">Please provide your feedback to help us improve our services.</div>
+    </div>
+    
+    <form id="satisfactionForm" onsubmit="return validateForm()">
+        <div class="question">
+            <label for="satisfaction">Overall satisfaction with our website:</label>
+            <div class="rating">
+                <input type="radio" id="very-satisfied1" name="satisfaction1" value="Very Satisfied"><label class="satisfied" for="very-satisfied1" data-text="Very Satisfied">❤️</label>
+                <input type="radio" id="satisfied1" name="satisfaction1" value="Satisfied"><label class="satisfied" for="satisfied1" data-text="Satisfied">😊</label>
+                <input type="radio" id="not-satisfied1" name="satisfaction1" value="Not Satisfied"><label class="not-satisfied" for="not-satisfied1" data-text="Not Satisfied">😞</label>
+                <input type="radio" id="disappointed1" name="satisfaction1" value="Disappointed"><label class="disappointed" for="disappointed1" data-text="Disappointed">😠</label>
+            </div>
+        </div>
+        
+        <div class="question">
+            <label for="satisfaction">Overall layout and design:</label>
+            <div class="rating">
+                <input type="radio" id="very-satisfied2" name="satisfaction2" value="Very Satisfied"><label class="satisfied" for="very-satisfied2" data-text="Very Satisfied">❤️</label>
+                <input type="radio" id="satisfied2" name="satisfaction2" value="Satisfied"><label class="satisfied" for="satisfied2" data-text="Satisfied">😊</label>
+                <input type="radio" id="not-satisfied2" name="satisfaction2" value="Not Satisfied"><label class="not-satisfied" for="not-satisfied2" data-text="Not Satisfied">😞</label>
+                <input type="radio" id="disappointed2" name="satisfaction2" value="Disappointed"><label class="disappointed" for="disappointed2" data-text="Disappointed">😠</label>
+            </div>
+        </div>
+        
+        <div class="question">
+            <label for="satisfaction">Was the navigation on our website intuitive and easy to use?:</label>
+            <div class="rating">
+                <input type="radio" id="very-satisfied3" name="satisfaction3" value="Very Satisfied"><label class="satisfied" for="very-satisfied3" data-text="Very Satisfied">❤️</label>
+                <input type="radio" id="satisfied3" name="satisfaction3" value="Satisfied"><label class="satisfied" for="satisfied3" data-text="Satisfied">😊</label>
+                <input type="radio" id="not-satisfied3" name="satisfaction3" value="Not Satisfied"><label class="not-satisfied" for="not-satisfied3" data-text="Not Satisfied">😞</label>
+                <input type="radio" id="disappointed3" name="satisfaction3" value="Disappointed"><label class="disappointed" for="disappointed3" data-text="Disappointed">😠</label>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button onclick="window.open('{{ url_for('final_output') }}', '_blank')" class="button">Submit</button>
+        </div>
+    </form>
+</div>
+
+<script>
+// Function to validate the form
+function validateForm() {
+    var questions = document.querySelectorAll('.question');
+    for (var i = 0; i < questions.length; i++) {
+        var radios = questions[i].querySelectorAll('input[type="radio"]');
+        var radioChecked = false;
+        for (var j = 0; j < radios.length; j++) {
+            if (radios[j].checked) {
+                radioChecked = true;
+                break;
+            }
+        }
+        if (!radioChecked) {
+            alert("Please answer all questions before submitting.");
+            return false;
+        }
+    }
+    return true;
+}
+</script>
+
+</body>
+</html>

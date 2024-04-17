@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 550px}
+    
+    /* Set red and blue gradient background */
+    body {
+      background: linear-gradient(135deg, #ff0000, #0099ff); /* Red to Blue gradient background */
+    }
+    
+    /* Set yellow background for navbar */
+    .navbar {
+      background-color: rgb(199, 9, 9); /* Pure solid yellow */
+    }
+
+    /* Set white background with opacity 1 */
+    .sidenav, .container-fluid {
+      background-color: rgb(64, 63, 126); /* White background with opacity 1 */
+    }
+
+    /* Adjustments for small screens */
+    @media screen and (max-width: 767px) {
+      .row.content {height: auto;} 
+    }
+
+    /* Larger logo */
+    .navbar-brand img {
+      width: 100px; /* Adjust width as needed */
+      height: auto; /* Maintain aspect ratio */
+    }
+
+    /* Style for logo link */
+    .logo-link {
+      text-decoration: none; /* Remove underline */
+      color: rgb(120, 149, 180); /* Change color as needed */
+    }
+
+    /* Style for active link */
+    .navbar-nav > .active > a,
+    .navbar-nav > .active > a:focus,
+    .navbar-nav > .active > a:hover {
+      background-color: lightblue; /* Light blue background */
+    }
+
+    /* User profile dropdown menu */
+    .dropdown-menu {
+      min-width: 160px;
+      background-color: #f9f9f9;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .dropdown-menu li a {
+      color: #333;
+      padding: 8px 20px;
+      text-decoration: none;
+      display: block;
+    }
+
+    .dropdown-menu li a:hover {
+      background-color: #f0f0f0;
+    }
+
+    /* Adjust padding of dashboard */
+    .dashboard {
+      padding-top: 50px; /* Adjust padding-top as needed */
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <a class="navbar-brand" href="#" id="logo">
+          <img src="{{ url_for('static', filename='logo.jpg') }}" alt="Barangay Image">
+        </a>
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="#">Dashboard</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="{{ url_for('document_request') }}" class="button">Document Request </a>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">About</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown" href="#">User Profile <span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Account Settings</a></li>
+              <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <script>
+    $(document).ready(function(){
+      // Function to hide the logo when the toggle button is clicked
+      $('.navbar-toggle').click(function(){
+        $('#logo').hide();
+      });
+  
+      // Function to show the logo when the toggle button is collapsed
+      $('.navbar-collapse').on('hidden.bs.collapse', function () {
+        $('#logo').show();
+      });
+    });
+  </script>
+
+
+<div class="container dashboard">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h4>Attention all college students, juniors, seniors in high school, and elementary pupils!</h4>
+        <p>We're thrilled to announce the distribution schedule for educational assistance! 🎉 Mark your calendars for March 8, 2024, Friday, at 11:00 AM sharp. We'll be gathering at the Bagumbayan Covered Court for this exciting event!
+
+          Join us as we distribute educational assistance to support your academic journey. Whether you're in college, high school, or elementary, we've got you covered!
+          
+          See you there! Let's make this day one to remember as we invest in your education and future success! 🌟</p>
+        <img src="https://scontent.fmnl5-2.fna.fbcdn.net/v/t39.30808-6/429970618_707649151578665_6669300873013363922_n.jpg?_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=nd1e-YC-0JEAX8tCItZ&_nc_ht=scontent.fmnl5-2.fna&oh=00_AfDDMl2OK5-ltEDiBjPbr1yxY-PWBsWTIOhrjS5xGuGo8g&oe=65EDE3E2" alt="facebook.com"class="img-responsive">>
+    </div>
+  </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h4>Users</h4>
+        <p>1 Million</p> 
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h4>Pages</h4>
+        <p>100 Million</p> 
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h4>Sessions</h4>
+        <p>10 Million</p> 
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <h4>Bounce</h4>
+        <p>30%</p> 
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+</html>
